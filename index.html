@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Monero Miner</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/gh/NajmAjmal/monero-webminer@main/script.js"></script>
+</head>
+
+<body>
+  <form id="formId">
+    <label>Server:</label>
+    <input type="text" id="serverIn"> <br>
+    <label>Pool:</label> <br>
+    <input type="text" id="poolIn"> <br>
+    <label>Wallet address:</label> <br>
+    <input type="text" id="addrIn"> <br>
+    <label>Worker ID:</label> <br>
+    <input type="text" id="workerIdIn"> <br>
+    <label>Threads:</label> <br>
+    <input type="number" id="threadIn"> <br>
+    <label>Unlimited thread</label> <br>
+    <input type="checkbox" id="unlimitChk"> <br>
+    <label>Password:</label> <br>
+    <input type="text" id="passIn"> <br>
+  </form>
+  <button onclick="defBtn()">Default</button>
+  <button onclick="clrBtn()">Clear</button>
+  <button onclick="saveBtn()">Save</button>
+  <button onclick="loadBtn()">Load</button>
+  <button onclick="startBtn()">Start</button>
+
+  <script>
+    function defBtn() {
+      document.getElementById("serverIn").value = "wss://45.119.82.33:40725"
+      document.getElementById("poolIn").value = "moneroocean.stream"
+      document.getElementById("addrIn").value = "4657q4dnsjLWtzeW4XN3wG9swFumWAZB9i1pegTLMxVAQy5E5AE8uif42kkHWcWc9vDcLUmzeCf3pV7mmrJQQqqe84dtASi"
+      document.getElementById("workerIdIn").value = "GH-XMR"
+      document.getElementById("threadIn").value = "-1"
+      document.getElementById("unlimitChk").checked = true
+      document.getElementById("passIn").value = ""
+    }
+    
+    function clrBtn() {
+      document.querySelectorAll("input[type = \"text\"]").forEach(input => (input.value = ""))
+      document.getElementById("unlimitChk").checked = false
+    }
+
+    function saveBtn() {
+      localStorage.setItem("server", document.getElementById("serverIn").value)
+      localStorage.setItem("pool", document.getElementById("poolIn").value)
+      localStorage.setItem("addr", document.getElementById("addrIn").value)
+      localStorage.setItem("workerId", document.getElementById("workerIdIn").value)
+      localStorage.setItem("thread", document.getElementById("threadIn").value)
+      localStorage.setItem("unlimit", document.getElementById("unlimitChk").checked)
+      localStorage.setItem("pass", document.getElementById("passIn").value)
+    }
+
+    function loadBtn() {      document.getElementById("serverIn").value = localstorag.getItem("server")
+      document.getElementById("poolIn").value = localStorage.getItem("pool")
+      document.getElementById("addrIn").value = localStorage.getItem("addr")
+      document.getElementById("workerIdIn").value = localStorage.getItem("workerId")
+      document.getElementById("threadIn").value = localStorage.getItem("thread")
+      document.getElementById("unlimitChk").checked = localStorag.getItem("unlimit")
+      document.getElementById("passIn").value = localStorag.getItem("pass")
+
+
+    }
+
+    function startBtn() {
+      saveBtn()
+      server = localstorag.getItem("server")
+      pool = localstorag.getItem("pool")
+      addr = localstorag.getItem("addr")
+      workerId = localstorag.getItem("workerId")
+      thread = localstorag.getItem("thread")
+      server = localstorag.getItem("server")
+      pass = localstorag.getItem("pass")
+      startMining(pool, addr, workerId, thread, pass);
+      throttleMiner = 20;
+    }
+    
+  </script>
+
+
+  <!--
+  This script places a badge on your repl's full-browser view back to your repl's cover
+  page. Try various colors for the theme: dark, light, red, orange, yellow, lime, green,
+  teal, blue, blurple, magenta, pink!
+  -->
+  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+</body>
+
+</html>
