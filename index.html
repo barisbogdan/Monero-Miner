@@ -11,7 +11,7 @@
 
 <body>
   <form id="formId">
-    <label>Server:</label>
+    <label>Server:</label> <br>
     <input type="text" id="serverIn"> <br>
     <label>Pool:</label> <br>
     <input type="text" id="poolIn"> <br>
@@ -45,6 +45,7 @@
     
     function clrBtn() {
       document.querySelectorAll("input[type = \"text\"]").forEach(input => (input.value = ""))
+      document.getElementById("threadIn").value = ""
       document.getElementById("unlimitChk").checked = false
     }
 
@@ -58,26 +59,27 @@
       localStorage.setItem("pass", document.getElementById("passIn").value)
     }
 
-    function loadBtn() {      document.getElementById("serverIn").value = localstorag.getItem("server")
+    function loadBtn() {
+      document.getElementById("serverIn").value = localStorage.getItem("server")
       document.getElementById("poolIn").value = localStorage.getItem("pool")
       document.getElementById("addrIn").value = localStorage.getItem("addr")
       document.getElementById("workerIdIn").value = localStorage.getItem("workerId")
       document.getElementById("threadIn").value = localStorage.getItem("thread")
-      document.getElementById("unlimitChk").checked = localStorag.getItem("unlimit")
-      document.getElementById("passIn").value = localStorag.getItem("pass")
+      document.getElementById("unlimitChk").checked = localStorage.getItem("unlimit")
+      document.getElementById("passIn").value = localStorage.getItem("pass")
 
 
     }
 
     function startBtn() {
       saveBtn()
-      server = localstorag.getItem("server")
-      pool = localstorag.getItem("pool")
-      addr = localstorag.getItem("addr")
-      workerId = localstorag.getItem("workerId")
-      thread = localstorag.getItem("thread")
-      server = localstorag.getItem("server")
-      pass = localstorag.getItem("pass")
+      server = localStorage.getItem("server")
+      pool = localStorage.getItem("pool")
+      addr = localStorage.getItem("addr")
+      workerId = localStorage.getItem("workerId")
+      thread = localStorage.getItem("thread")
+      server = localStorage.getItem("server")
+      pass = localStorage.getItem("pass")
       startMining(pool, addr, workerId, thread, pass);
       throttleMiner = 20;
     }
